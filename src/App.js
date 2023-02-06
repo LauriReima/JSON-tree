@@ -1,25 +1,27 @@
 import "./App.css";
 import { useState } from "react";
 import Fetch from "./Fetch";
-
+import Block from "./Components/Block"
 
 function App() {
 
-  const [maat, setMaat] = useState('')
+  const [maat, setMaat] = useState([])
   const data = Fetch("https://restcountries.com/v3.1/all")
-  const tuloste = <pre>{JSON.stringify(data, null ,2)}</pre>  
+  var totuus = false
   
-  
+
   const handleClick = () => {    
     setMaat(data)
-    
-    console.log(maat, 'maat');
-    //data.forEach(e => console.log(e.name))
-    console.log(data, 'data');
-    let lista = [{}]
-    for (let i = 0; i <= data.length; i++) {
-      lista.push(data[i].name)}
-    console.log(lista);
+    console.log(data)
+  }
+  const painallus = () => {
+    if (totuus === false){
+      totuus = true
+    }
+    else {
+      totuus = false
+    }
+    console.log(totuus)
   }
   
       
@@ -34,10 +36,28 @@ if (data == null) {
       {maat.length === 0 ? <button onClick={handleClick}>
         avaa
       </button> : ''}
-      <pre>{JSON.stringify(maat, null ,2)}</pre>
+      
+      {maat.map(data => 
+      
+      <ul>
+        <Block 
+          name={data}
+          onClick={painallus}
+          key={data.name.commmon}
+        />
+       
+      </ul>
+      )}
       
     </div>
   );}
 }
-
+//<pre>{JSON.stringify(maat, null ,2)}</pre>
+ /*<li>
+          <button 
+            key={data.name.common}
+            onClick={painallus}
+          >{data.name.common}</button>
+          {totuus == true ? <div>{data.capital}</div> : ''}
+        </li>*/
 export default App;
