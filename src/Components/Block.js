@@ -1,20 +1,15 @@
 import React from "react";
 
-const Block = (para,painallus) => {
-
+const Block = ({name}) => {
     return (
-        <div>
-            <ul>
+
+            
                 <li>
-                <button 
-                    key={para.name.name.common}
-                    onClick={painallus}
-                >{para.name.name.common}</button>
+                <p
+                >{name}</p>
                 
                 </li>
-            </ul>
-        </div>
     )
 }
-//{totuus == true ? <div>{para.capital}</div> : ''}
+
 export default Block
